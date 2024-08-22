@@ -19,7 +19,10 @@ export default async function Page({
 }) {
   const query = searchParams?.query || "";
   const currentPage = Number(searchParams?.page) || 1;
-  const filteredServices = await fetchFilteredServices(query);
+  const filteredServices = await fetchFilteredServices(
+    query,
+    "410544b2-4001-4271-9885-fec4b6a6442b"
+  );
 
   return (
     <div className="w-full">

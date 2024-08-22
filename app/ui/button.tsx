@@ -1,19 +1,37 @@
-import clsx from 'clsx';
+import clsx from "clsx";
+import { Button } from "@/components/ui/button";
+import { PowerIcon, EllipsisVerticalIcon } from "@heroicons/react/24/outline";
 
-interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  children: React.ReactNode;
+interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {}
+
+export function ButtonOutline() {
+  return <Button variant="outline">Outline</Button>;
 }
 
-export function Button({ children, className, ...rest }: ButtonProps) {
+export function LogoutButton({ className, ...rest }: ButtonProps) {
   return (
-    <button
+    <Button
       {...rest}
-      className={clsx(
-        'flex h-10 items-center rounded-lg bg-blue-500 px-4 text-sm font-medium text-white transition-colors hover:bg-blue-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 active:bg-blue-600 aria-disabled:cursor-not-allowed aria-disabled:opacity-50',
-        className,
-      )}
+      variant="outline"
+      size="icon"
+      className={clsx("w-full flex pl-2 pr-3 gap-2", className)}
     >
-      {children}
-    </button>
+      <PowerIcon className="h-[1.2rem] w-[1.2rem]" />
+      <span className="text-sm">Logout</span>
+    </Button>
+  );
+}
+
+export function ServiceInformationButton({ className, ...rest }: ButtonProps) {
+  return (
+    <Button
+      {...rest}
+      variant="outline"
+      size="icon"
+      className={clsx("w-full flex px-2 gap-2", className)}
+    >
+      <EllipsisVerticalIcon className="h-[1.2rem] w-[1.2rem]" />
+      <span className="sr-only">Service information button</span>
+    </Button>
   );
 }

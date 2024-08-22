@@ -1,13 +1,13 @@
-import type { Config } from "tailwindcss"
+import type { Config } from "tailwindcss";
 
 const config = {
   darkMode: ["class"],
   content: [
-    './pages/**/*.{ts,tsx}',
-    './components/**/*.{ts,tsx}',
-    './app/**/*.{ts,tsx}',
-    './src/**/*.{ts,tsx}',
-	],
+    "./pages/**/*.{ts,tsx}",
+    "./components/**/*.{ts,tsx}",
+    "./app/**/*.{ts,tsx}",
+    "./src/**/*.{ts,tsx}",
+  ],
   prefix: "",
   theme: {
     container: {
@@ -52,6 +52,12 @@ const config = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        "dark-theme": "rgb(17 24 39)", // Dark blue-gray background
+        "dark-theme-title": "rgb(30 41 59)", // Dark blue-gray background
+        "dark-theme-subtitle": "rgb(71 85 105)", // Dark blue-gray background
+        "dark-theme-text": "rgb(148 163 184)", // Dark blue-gray background
+        "light-theme": "rgb(209 213 219)", // Light gray background
+        "ipxon-magenta": "rgb(223,12,125)", //Magenta in Ipxon Logo
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -75,6 +81,6 @@ const config = {
     },
   },
   plugins: [require("tailwindcss-animate")],
-} satisfies Config
+} satisfies Config;
 
-export default config
+export default config;
