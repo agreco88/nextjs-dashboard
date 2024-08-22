@@ -1,12 +1,6 @@
 import { fetchServiceById } from "@/app/lib/data"; // You'll create this function to fetch service by ID
 import Breadcrumbs from "@/app/ui/invoices/breadcrumbs";
 import { Metadata } from "next";
-import { lusitana, inter } from "@/app/ui/fonts";
-import {
-  CircleStackIcon,
-  CpuChipIcon,
-  ServerStackIcon,
-} from "@heroicons/react/24/outline";
 
 import {
   Card,
@@ -17,8 +11,6 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { BarChartComponent } from "@/app/ui/services/BarChart";
-import Location from "@/app/ui/services/location";
-import ReactCountryFlag from "react-country-flag";
 import Image from "next/image";
 
 export const metadata: Metadata = {
