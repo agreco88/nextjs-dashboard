@@ -1,28 +1,29 @@
 "use client";
 
-import { CustomerField } from "@/app/lib/definitions";
-import Link from "next/link";
-import {
-  CheckIcon,
-  ClockIcon,
-  CurrencyDollarIcon,
-  UserCircleIcon,
-} from "@heroicons/react/24/outline";
-import { Button } from "@/app/ui/button";
+// import { CustomerField } from "@/app/lib/definitions";
+// import Link from "next/link";
+// import {
+//   CheckIcon,
+//   ClockIcon,
+//   CurrencyDollarIcon,
+//   UserCircleIcon,
+// } from "@heroicons/react/24/outline";
+// import { Button } from "@/app/ui/button";
 import { createInvoice, State } from "@/app/lib/actions";
 
 import { useActionState } from "react";
 
-export default function Form({ customers }: { customers: CustomerField[] }) {
+// export default function Form({ customers }: { customers: CustomerField[] }) {
+//   const initialState: State = { message: null, errors: {} };
+export default function Form() {
   const initialState: State = { message: null, errors: {} };
-
   const [state, formAction] = useActionState(createInvoice, initialState);
 
   return (
     <form action={formAction}>
       <div className="rounded-md bg-gray-50 p-4 md:p-6">
         {/* Customer Name */}
-        <div className="mb-4">
+        {/* <div className="mb-4">
           <label htmlFor="customer" className="mb-2 block text-sm font-medium">
             Choose customer
           </label>
@@ -53,10 +54,10 @@ export default function Form({ customers }: { customers: CustomerField[] }) {
                 </p>
               ))}
           </div>
-        </div>
+        </div> */}
 
         {/* Invoice Amount */}
-        <div className="mb-4">
+        {/* <div className="mb-4">
           <label htmlFor="amount" className="mb-2 block text-sm font-medium">
             Choose an amount
           </label>
@@ -82,10 +83,10 @@ export default function Form({ customers }: { customers: CustomerField[] }) {
                 ))}
             </div>
           </div>
-        </div>
+        </div> */}
 
         {/* Invoice Status */}
-        <fieldset>
+        {/* <fieldset>
           <legend className="mb-2 block text-sm font-medium">
             Set the invoice status
           </legend>
@@ -133,9 +134,9 @@ export default function Form({ customers }: { customers: CustomerField[] }) {
                 </p>
               ))}
           </div>
-        </fieldset>
+        </fieldset> */}
       </div>
-      <div className="mt-6 flex justify-end gap-4">
+      {/* <div className="mt-6 flex justify-end gap-4">
         <Link
           href="/dashboard/invoices"
           className="flex h-10 items-center rounded-lg bg-gray-100 px-4 text-sm font-medium text-gray-600 transition-colors hover:bg-gray-200"
@@ -143,7 +144,8 @@ export default function Form({ customers }: { customers: CustomerField[] }) {
           Cancel
         </Link>
         <Button type="submit">Create Invoice</Button>
-      </div>
+      </div> */}
+      customer form
     </form>
   );
 }
