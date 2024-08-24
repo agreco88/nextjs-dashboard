@@ -2,6 +2,9 @@
 // It describes the shape of the data, and what data type each property should accept.
 // For simplicity of teaching, we're manually defining these types.
 // However, these types are generated automatically if you're using an ORM such as Prisma.
+
+import { ReactNode } from "react";
+
 // User data type
 export type User = {
   id: string;
@@ -29,6 +32,23 @@ export type Service = {
   user_id: string; // Linked to a specific user
 };
 
+export type ServiceImageCardProps = {
+  image_url: string;
+  title: string;
+  children: ReactNode; // or use Date type if you prefer
+};
+
+export type ServiceInfoCardProps = {
+  title: string;
+  heading: string;
+  children?: ReactNode;
+};
+
+export type DateInformationProps = {
+  title: string;
+  date: string; // The date string to format
+};
+
 // Reading data type
 export type Reading = {
   id: string;
@@ -44,3 +64,14 @@ export type LocationInfo = {
   city: string; // The name of the city
   country: string; // The name of the country
 };
+
+export type ResourceDetail = {
+  [key: string]: string; // Key-value pairs for details like Manufacturer, Model, etc.
+};
+
+export interface ResourceCardProps {
+  title: string; // e.g., "CPU"
+  value: string; // e.g., "48%"
+  details: ResourceDetail; // Additional details
+  separatorColor: string; // Border color for the separator/utilization bar
+}

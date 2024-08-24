@@ -5,8 +5,8 @@ import { ThemeProvider } from "./ui/theme-provider";
 
 export const metadata: Metadata = {
   title: {
-    template: "%s | Acme Dashboard",
-    default: "Acme Dashboard",
+    template: "%s | IPXON Customer Panel",
+    default: "IPXON Customer Panel",
   },
   description: "The official Next.js Learn Dashboard built with App Router.",
   metadataBase: new URL("https://next-learn-dashboard.vercel.sh"),

@@ -1,9 +1,9 @@
-import { lusitana } from "@/app/ui/fonts";
-import { InvoicesTableSkeleton } from "@/app/ui/skeletons";
+import { Metadata } from "next";
 import { Suspense } from "react";
 import { fetchFilteredServices } from "@/app/lib/data";
-import { Metadata } from "next";
+import { InvoicesTableSkeleton } from "@/app/ui/skeletons";
 import ServiceTable from "@/app/ui/services/table";
+import Breadcrumbs from "@/app/ui/breadcrumbs";
 
 export const metadata: Metadata = {
   title: "Services",
@@ -25,7 +25,15 @@ export default async function Page({
   );
 
   return (
-    <div className="w-full">
+    <div className="w-full container mx-auto">
+      <div className="flex flex-col pt-8 gap-4">
+        <Breadcrumbs
+          breadcrumbs={[
+            { label: "Home", href: "/" },
+            { label: "Services", href: "/dashboard/services" },
+          ]}
+        />
+      </div>
       <div className="mt-5 flex w-full justify-center">
         <Suspense
           key={query + currentPage}

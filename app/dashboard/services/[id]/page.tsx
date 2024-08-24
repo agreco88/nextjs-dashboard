@@ -1,17 +1,11 @@
 import { fetchServiceById } from "@/app/lib/data"; // You'll create this function to fetch service by ID
-import Breadcrumbs from "@/app/ui/invoices/breadcrumbs";
+import Breadcrumbs from "@/app/ui/breadcrumbs";
 import { Metadata } from "next";
-
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
 import { BarChartComponent } from "@/app/ui/services/BarChart";
-import Image from "next/image";
+import SerivceInfoCard from "@/app/ui/services/cards/ServiceInfoCard";
+import ServiceImageCard from "@/app/ui/services/cards/ServiceImageCard";
+import DateInformation from "@/app/ui/services/cards/DateInformation";
+import ResourceCard from "@/app/ui/services/cards/ResourceCard";
 
 export const metadata: Metadata = {
   title: "Service Details",
@@ -33,152 +27,98 @@ export default async function ServiceDetailsPage({
 
   return (
     <div className="px-4 sm:px-6 lg:px-8 flex flex-col gap-5 w-full">
-      <div className="sm:flex sm:items-center pt-8 px-2">
-        <div className="sm:flex-auto">
-          <Breadcrumbs
-            breadcrumbs={[
-              { label: "Services", href: "/dashboard/services" },
-              {
-                label: `${service.id}`,
-                href: "/dashboard/invoices/create",
-                active: true,
-              },
-            ]}
-          />
+      <div className="flex flex-col pt-8 gap-4">
+        <Breadcrumbs
+          breadcrumbs={[
+            { label: "Home", href: "/" },
+            { label: "Services", href: "/dashboard/services" },
+            {
+              label: `${service.id}`,
+              href: `/dashboard/services/${service.id}`,
+              active: true,
+            },
+          ]}
+        />
+
+        <div className="flex flex-col gap-2">
           <h1 className="text-base font-semibold leading-6 text-gray-900 dark:text-light-theme">
             Service details
           </h1>
-          <p className="mt-2 text-sm text-gray-700 dark:text-gray-400">
+          <h2 className="text-sm text-gray-700 dark:text-gray-400">
             Find all the information regarding your service here.
-          </p>
+          </h2>
         </div>
       </div>
 
       <div className="grid gap-4 md:grid-cols-3 lg:grid-cols-3">
-        <Card className="relative rounded-xl border bg-card text-card-foreground shadow col-span-1 overflow-hidden">
-          <div className="absolute inset-0 z-0 opacity-20">
-            <Image
-              src={service.image_url}
-              alt={`${service.name} icon`}
-              layout="fill"
-              objectFit="cover"
-              className="object-center "
-            />
-          </div>
-          <div className="relative z-10 p-6 flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="tracking-tight text-sm font-medium">
-              Type
-            </CardTitle>
-          </div>
-          <div className="relative z-10 p-6 pt-0 flex flex-col gap-1">
-            <CardTitle className="text-2xl font-bold capitalize flex gap-1">
-              {service.type}
-            </CardTitle>
-            <CardDescription className="text-xs gap-1 flex text-muted-foreground font-bold">
-              <span className="text-xs gap-1 flex text-muted-foreground self-end uppercase tracking-tighter">
-                <span className="text-xs gap-2 flex text-muted-foreground self-end uppercase tracking-tighter">
-                  Last modified:
-                </span>
-                {new Date(service.created).toLocaleDateString("en-US", {
-                  year: "numeric",
-                  month: "short",
-                  day: "numeric",
-                })}
-              </span>
-            </CardDescription>
-          </div>
-        </Card>
+        <ServiceImageCard title={service.type} image_url={service.image_url}>
+          <DateInformation title="Last modified" date={service.last_modified} />
+        </ServiceImageCard>
 
-        <Card className="rounded-xl border bg-card text-card-foreground shadow">
-          <CardContent className="p-6 flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="tracking-tight text-sm font-medium">
-              Service name
-            </CardTitle>
-          </CardContent>
-          <div className="p-6 pt-0 flex flex-col gap-1">
-            <CardTitle className="text-2xl font-bold">{service.name}</CardTitle>
-            <CardDescription className="flex gap-1 items-centertext-xs text-muted-foreground uppercase font-bold">
-              <span className="text-xs gap-1 flex text-muted-foreground self-end uppercase tracking-tighter">
-                <span className="text-xs gap-2 flex text-muted-foreground self-end uppercase tracking-tighter">
-                  Crated:
-                </span>
-                {new Date(service.created).toLocaleDateString("en-US", {
-                  year: "numeric",
-                  month: "short",
-                  day: "numeric",
-                })}
-              </span>
-            </CardDescription>
-          </div>
-        </Card>
+        <SerivceInfoCard title="Service name" heading={service.name}>
+          <DateInformation title="Created" date={service.created} />
+        </SerivceInfoCard>
 
-        <Card className="rounded-xl border bg-card text-card-foreground shadow col-span-1">
-          <CardContent className="p-6 flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="tracking-tight text-sm font-medium">
-              Status
-            </CardTitle>
-          </CardContent>
-          <div className="p-6 pt-0 flex flex-col gap-1">
-            <CardTitle className="text-2xl font-bold capitalize">
-              {service.status}
-            </CardTitle>
-            <CardDescription className="text-xs gap-1 flex text-muted-foreground font-bold">
-              <span className="text-xs gap-1 flex text-muted-foreground self-end uppercase tracking-tighter">
-                <span className="text-xs gap-2 flex text-muted-foreground self-end uppercase tracking-tighter">
-                  Last modified:
-                </span>
-                {new Date(service.created).toLocaleDateString("en-US", {
-                  year: "numeric",
-                  month: "short",
-                  day: "numeric",
-                })}
-              </span>
-            </CardDescription>
-          </div>
-        </Card>
+        <SerivceInfoCard title="Status" heading={service.status}>
+          <DateInformation title="Last modified" date={service.last_modified} />
+        </SerivceInfoCard>
       </div>
+
       <BarChartComponent />
-      <div className="grid grid-cols-4 w-full gap-4">
-        <Card className="bg-red-700 flex flex-col gap-2">
-          <h4>CPU information:</h4>
-          <ul>
-            <li>Model: Intel® Xeon® 6740E Processor</li>
-            <li>Cores: 96</li>
-            <li>Max Turbo Frequency: 3.2 Ghz</li>
-            <li>Processor Base Frequency: 3.2 Ghz</li>
-            <li>Cache: 96 MB</li>
-          </ul>
-        </Card>
-        <div className="bg-red-700">
-          <h4>RAM information:</h4>
-          <ul>
-            <li>Model: Kingston Server Premier</li>
-            <li>Amount: 16 GB</li>
-            <li>Type: DDR4 ECC CL22</li>
-            <li>Speed: 3200 MHz </li>
-            <li>Form factor: DIMM</li>
-          </ul>
-        </div>{" "}
-        <div className="bg-red-700">
-          <h4>Storage information:</h4>
-          <ul>
-            <li>Model: Kingston Server Premier</li>
-            <li>Interface: PCIe 4.0 x4 NVMe</li>
-            <li>Capacity: 480 GB</li>
-            <li>Sequential read/write : 7000/800 MBs </li>
-            <li>Form factor: M.2 2280</li>
-          </ul>
-        </div>{" "}
-        <div className="bg-red-700">
-          <h4>Bandwith information:</h4>
-          <ul>
-            <li>Model: Kingston Server Premier</li>
-            <li>Interface: PCIe 4.0 x4 NVMe</li>
-            <li>Capacity: 480 GB</li>
-            <li>Sequential read/write : 7000/800 MBs </li>
-            <li>Form factor: M.2 2280</li>
-          </ul>
-        </div>{" "}
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <ResourceCard
+          title="CPU"
+          value="48%"
+          details={{
+            Manufacturer: "Intel®",
+            Model: "Xeon® 6740E",
+            Cores: "96",
+            Threads: "96",
+            Frequency: "3200 MHz",
+            Cache: "96 MB",
+          }}
+          separatorColor="border-teal-600"
+        />
+        <ResourceCard
+          title="RAM"
+          value="89%"
+          details={{
+            Manufacturer: "Kingston®",
+            Interface: "DIMM",
+            Capacity: "16 GB",
+            Bus: "PCIe 4.0",
+            Frequency: "3200 MHz",
+            Type: "DDR4",
+          }}
+          separatorColor="border-cyan-600"
+        />
+        <ResourceCard
+          title="Storage"
+          value="65%"
+          details={{
+            Manufacturer: "Kingston®",
+            Interface: "x4 NVMe",
+            Capacity: "480 GB",
+            Bus: "7000/8000 MBs",
+            "Read/Write": "3200 MHz",
+            "Form factor": "M.2 2280",
+          }}
+          separatorColor="border-amber-600"
+        />
+        <ResourceCard
+          title="Bandwidth"
+          value="21%"
+          details={{
+            Manufacturer: "Kingston®",
+            Interface: "x4 NVMe",
+            Capacity: "480 GB",
+            Bus: "7000/8000 MBs",
+            "Read/Write": "3200 MHz",
+            "Form factor": "M.2 2280",
+          }}
+          separatorColor="border-lime-600"
+        />
       </div>
     </div>
   );
