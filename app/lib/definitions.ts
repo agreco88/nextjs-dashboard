@@ -73,5 +73,6 @@ export interface ResourceCardProps {
   title: string; // e.g., "CPU"
   value: string; // e.g., "48%"
   details: ResourceDetail; // Additional details
+  serviceId: string;
   separatorColor: string; // Border color for the separator/utilization bar
 }

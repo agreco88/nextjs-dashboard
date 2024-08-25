@@ -15,8 +15,8 @@ import {
   ArrowTopRightOnSquareIcon,
   StopIcon,
   PauseIcon,
-  ArrowRightIcon,
-} from "@heroicons/react/24/outline";
+  ChartBarIcon,
+} from "@heroicons/react/24/solid";
 import Link from "next/link";
 
 interface ServiceOptionsDropdownProps {
@@ -39,7 +39,7 @@ export function ServiceOptionsDropdown({
       <DropdownMenuContent align="end" className="px-2 py-3">
         <Link href={`/dashboard/services/${serviceId}`}>
           <DropdownMenuItem className="flex items-center gap-2">
-            <ArrowRightIcon className="h-4 w-4" />
+            <ChartBarIcon className="h-4 w-4" />
             {`View ${
               status === "suspended" ? "suspension details" : "details page"
             }`}

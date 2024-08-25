@@ -66,8 +66,9 @@ export default async function ServiceDetailsPage({
 
       <BarChartComponent />
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-4 gap-4">
         <ResourceCard
+          serviceId={service.id}
           title="CPU"
           value="48%"
           details={{
@@ -81,6 +82,7 @@ export default async function ServiceDetailsPage({
           separatorColor="border-teal-600"
         />
         <ResourceCard
+          serviceId={service.id}
           title="RAM"
           value="89%"
           details={{
@@ -94,6 +96,7 @@ export default async function ServiceDetailsPage({
           separatorColor="border-cyan-600"
         />
         <ResourceCard
+          serviceId={service.id}
           title="Storage"
           value="65%"
           details={{
@@ -107,6 +110,7 @@ export default async function ServiceDetailsPage({
           separatorColor="border-amber-600"
         />
         <ResourceCard
+          serviceId={service.id}
           title="Bandwidth"
           value="21%"
           details={{

@@ -2,7 +2,9 @@ import NavLinks from "@/app/ui/dashboard/nav-links";
 import { signOut } from "@/auth";
 import { ThemeDropdownMenu } from "../theme-toggle";
 import IpxonLogo from "@/app/ui/ipxon-logo";
-import { LogoutButton } from "../button";
+import { LogoutButton, TermsAndConditionsButton } from "../button";
+import { DrawerComponent } from "../DrawerComponent";
+import { Button } from "@/components/ui/button";
 
 export default function SideNav() {
   return (
@@ -10,19 +12,25 @@ export default function SideNav() {
       <div className="h-20 md:h-40 flex items-center justify-center">
         <IpxonLogo />
       </div>
-      <div className="flex grow flex-row justify-between space-x-2 md:flex-col md:space-x-0 md:space-y-2">
+      <div className="flex grow flex-col justify-between space-x-2 md:flex-col md:space-x-0 md:space-y-2">
         <NavLinks />
         <div className="hidden h-auto w-full grow rounded-md md:block"></div>
-        <div className="flex gap-2">
-          <ThemeDropdownMenu />
-          <form
-            action={async () => {
-              "use server";
-              await signOut();
-            }}
-          >
-            <LogoutButton />
-          </form>
+        <div className="grid gap-2">
+          <DrawerComponent />
+          <TermsAndConditionsButton />
+          <div className="flex gap-2">
+            <ThemeDropdownMenu />
+
+            <form
+              action={async () => {
+                "use server";
+                await signOut();
+              }}
+              className="flex grow"
+            >
+              <LogoutButton />
+            </form>
+          </div>
         </div>
       </div>
     </div>

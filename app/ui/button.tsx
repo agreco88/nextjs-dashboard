@@ -1,6 +1,10 @@
 import clsx from "clsx";
 import { Button } from "@/components/ui/button";
-import { PowerIcon, EllipsisVerticalIcon } from "@heroicons/react/24/outline";
+import {
+  PowerIcon,
+  EllipsisVerticalIcon,
+  DocumentTextIcon,
+} from "@heroicons/react/24/outline";
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {}
 
@@ -32,6 +36,20 @@ export function ServiceInformationButton({ className, ...rest }: ButtonProps) {
     >
       <EllipsisVerticalIcon className="h-[1.2rem] w-[1.2rem]" />
       <span className="sr-only">Service information button</span>
+    </Button>
+  );
+}
+
+export function TermsAndConditionsButton({ className, ...rest }: ButtonProps) {
+  return (
+    <Button
+      {...rest}
+      variant="outline"
+      size="icon"
+      className={clsx("w-full flex pl-2 pr-3 gap-2", className)}
+    >
+      {/* <DocumentTextIcon className="h-[1.2rem] w-[1.2rem]" /> */}
+      <span className="text-sm">Terms and conditions</span>
     </Button>
   );
 }
