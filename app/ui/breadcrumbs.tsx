@@ -40,7 +40,9 @@ export default function Breadcrumbs({
                 {breadcrumb.label}
               </BreadcrumbLink>
             </BreadcrumbItem>
-            {index < breadcrumbs.length - 1 && <BreadcrumbSeparator />}
+            {index < breadcrumbs.length - 1 && (
+              <BreadcrumbSeparator key={index} />
+            )}
           </>
         ))}
       </BreadcrumbList>

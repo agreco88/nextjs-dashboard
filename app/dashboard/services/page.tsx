@@ -4,6 +4,8 @@ import { fetchFilteredServices } from "@/app/lib/data";
 import { InvoicesTableSkeleton } from "@/app/ui/skeletons";
 import ServiceTable from "@/app/ui/services/table";
 import Breadcrumbs from "@/app/ui/breadcrumbs";
+import { BarLoader } from "@/app/ui/loaders";
+import Search from "@/app/ui/search";
 
 export const metadata: Metadata = {
   title: "Services",
@@ -25,8 +27,8 @@ export default async function Page({
   );
 
   return (
-    <div className="w-full container mx-auto">
-      <div className="flex flex-col pt-8 gap-4">
+    <main className="w-full flex flex-col p-8">
+      <div className="flex flex-col gap-4">
         <Breadcrumbs
           breadcrumbs={[
             { label: "Home", href: "/" },
@@ -34,14 +36,17 @@ export default async function Page({
           ]}
         />
       </div>
+      <div className="pt-4">
+        <Search placeholder="Search services..." />
+      </div>
       <div className="mt-5 flex w-full justify-center">
         <Suspense
           key={query + currentPage}
-          fallback={<InvoicesTableSkeleton />}
+          fallback={<BarLoader loadingText="Loading services..." />}
         >
           <ServiceTable services={filteredServices} />
         </Suspense>
       </div>
-    </div>
+    </main>
   );
 }

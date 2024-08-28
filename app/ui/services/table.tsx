@@ -61,7 +61,6 @@ export default async function ServiceTable({
                   width={28}
                   height={28}
                 />
-
                 <div className="ml-4">
                   <div className="font-semibold text-dark-theme-title dark:text-light-theme">
                     {service.name}

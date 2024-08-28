@@ -20,7 +20,7 @@ const ResourceCard: React.FC<ResourceCardProps> = ({
         <div className="flex flex-col">
           <div className="flex ">
             <div className="flex flex-col gap-1 justify-between">
-              <CardTitle className="tracking-tight text-sm font-medium">
+              <CardTitle className="tracking-tight dark:text-dark-theme-text text-sm font-medium">
                 {title}
               </CardTitle>
               <CardTitle className="text-4xl font-bold capitalize">

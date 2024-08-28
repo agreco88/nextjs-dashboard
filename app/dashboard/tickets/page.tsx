@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 
 export default async function Page() {
   return (
-    <main className="w-full container mx-auto flex flex-col pt-8 gap-">
+    <main className="w-full flex flex-col p-8">
       <Breadcrumbs
         breadcrumbs={[
           { label: "Home", href: "/" },

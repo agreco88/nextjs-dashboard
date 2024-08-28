@@ -6,6 +6,7 @@ import SerivceInfoCard from "@/app/ui/services/cards/ServiceInfoCard";
 import ServiceImageCard from "@/app/ui/services/cards/ServiceImageCard";
 import DateInformation from "@/app/ui/services/cards/DateInformation";
 import ResourceCard from "@/app/ui/services/cards/ResourceCard";
+import Search from "@/app/ui/search";
 
 export const metadata: Metadata = {
   title: "Service Details",
@@ -39,15 +40,6 @@ export default async function ServiceDetailsPage({
             },
           ]}
         />
-
-        <div className="flex flex-col gap-2">
-          <h1 className="text-base font-semibold leading-6 text-gray-900 dark:text-light-theme">
-            Service details
-          </h1>
-          <h2 className="text-sm text-gray-700 dark:text-gray-400">
-            Find all the information regarding your service here.
-          </h2>
-        </div>
       </div>
 
       <div className="grid gap-4 md:grid-cols-3 lg:grid-cols-3">
@@ -97,7 +89,7 @@ export default async function ServiceDetailsPage({
         />
         <ResourceCard
           serviceId={service.id}
-          title="Storage"
+          title="STORAGE"
           value="65%"
           details={{
             Manufacturer: "Kingston®",
@@ -111,7 +103,7 @@ export default async function ServiceDetailsPage({
         />
         <ResourceCard
           serviceId={service.id}
-          title="Bandwidth"
+          title="BANDWIDTH"
           value="21%"
           details={{
             Manufacturer: "Kingston®",
