@@ -4,9 +4,6 @@ import { Reading, Service, User } from "./definitions";
 // Fetch Services
 export async function fetchServices() {
   try {
-    console.log("Fetching services data...");
-    await new Promise((resolve) => setTimeout(resolve, 3000));
-
     const data = await sql<Service>`
       SELECT
         id,
@@ -25,7 +22,6 @@ export async function fetchServices() {
       FROM services
       ORDER BY name ASC
     `;
-
     return data.rows;
   } catch (error) {
     console.error("Database Error:", error);
@@ -36,9 +32,6 @@ export async function fetchServices() {
 // Fetch Readings
 export async function fetchReadings() {
   try {
-    console.log("Fetching readings data...");
-    await new Promise((resolve) => setTimeout(resolve, 3000));
-
     const data = await sql<Reading>`
       SELECT
         id,
@@ -82,6 +75,8 @@ export async function fetchUsers() {
 
 // Fetch Filtered Services
 export async function fetchFilteredServices(query: string, userId: string) {
+  console.log("Fetching services data...");
+  await new Promise((resolve) => setTimeout(resolve, 1000));
   try {
     const data = await sql<Service>`
       SELECT
@@ -97,7 +92,7 @@ export async function fetchFilteredServices(query: string, userId: string) {
         billing_status,
         image_url,
         city,
-        country
+        country,
         user_id
       FROM services
       WHERE

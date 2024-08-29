@@ -49,6 +49,10 @@ export const formatDateToLocale = (
   return formatter.format(date);
 };
 
+export function delay(ms: number) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
 export const generatePagination = (currentPage: number, totalPages: number) => {
   // If the total number of pages is 7 or less,
   // display all pages without any ellipsis.

@@ -1,8 +1,8 @@
 "use client";
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 
 export const BarLoader = ({ loadingText = "" }) => {
-  const barVariants = {
+  const barVariants: Variants = {
     initial: {
       scaleY: 0.5,
       opacity: 0,
@@ -19,7 +19,7 @@ export const BarLoader = ({ loadingText = "" }) => {
     },
   };
 
-  const textVariants = {
+  const textVariants: Variants = {
     initial: {
       opacity: 0,
     },

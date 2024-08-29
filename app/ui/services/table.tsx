@@ -1,28 +1,33 @@
 import Image from "next/image";
-import Search from "@/app/ui/search";
+import { motion } from "framer-motion";
 import { Service } from "@/app/lib/definitions";
+import { fetchFilteredServices } from "@/app/lib/data";
 import Location from "./location";
+import Status from "./status";
+import { ServiceOptionsDropdown } from "./service-options-dropdown";
+import { formatDateToLocale } from "@/app/lib/utils";
+import { use } from "react";
 
 import {
   Table,
   TableBody,
-  TableCaption,
   TableCell,
-  TableFooter,
   TableHead,
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import Status from "./status";
 
-import { ServiceOptionsDropdown } from "./service-options-dropdown";
-import { formatDateToLocale } from "@/app/lib/utils";
+type ServiceTableProps = {
+  query: string;
+  currentPage: number;
+};
 
-export default async function ServiceTable({
-  services,
-}: {
-  services: Service[];
-}) {
+export default function ServiceTable({ query }: ServiceTableProps) {
+  // Fetch services using the use hook
+  const services = use(
+    fetchFilteredServices(query, "410544b2-4001-4271-9885-fec4b6a6442b")
+  );
+
   return (
     <Table className="min-w-full px-4 sm:px-6 lg:px-8 w-full divide-y divide-gray-300">
       <TableHeader>
@@ -50,8 +55,8 @@ export default async function ServiceTable({
           </TableHead>
         </TableRow>
       </TableHeader>
-      <TableBody className="divide-y divide-gray-200 dark:divide-dark-theme-title bg-white dark:bg-dark-theme ">
-        {services.map((service) => (
+      <TableBody className="divide-y divide-gray-200 dark:divide-dark-theme-title bg-white dark:bg-dark-theme">
+        {services.map((service: Service) => (
           <TableRow key={service.id}>
             <TableCell>
               <div className="flex items-center">
@@ -73,8 +78,9 @@ export default async function ServiceTable({
             </TableCell>
             <TableCell>
               <Location
+                city={service.city}
+                country={service.country}
                 isoCode={service.iso_code}
-                iataCode={service.iata_code}
               />
             </TableCell>
             <TableCell>
@@ -90,9 +96,6 @@ export default async function ServiceTable({
               {service.billing_status}
             </TableCell>
             <TableCell>
-              {/* <Link href={`/dashboard/services/${service.id}`}>
-                  <ServiceOptionsDropdown />
-                </Link> */}
               <ServiceOptionsDropdown
                 serviceId={service.id}
                 status={service.status}
@@ -101,7 +104,6 @@ export default async function ServiceTable({
           </TableRow>
         ))}
       </TableBody>
-      {/* <TableCaption className="py-8">Buy more services</TableCaption> */}
     </Table>
   );
 }
