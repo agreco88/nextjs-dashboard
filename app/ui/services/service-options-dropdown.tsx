@@ -9,7 +9,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import {
-  EllipsisVerticalIcon,
+  EllipsisHorizontalIcon,
   PlayIcon,
   PowerIcon,
   ArrowTopRightOnSquareIcon,
@@ -31,8 +31,8 @@ export function ServiceOptionsDropdown({
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="outline" size="icon" className="w-10 h-10">
-          <EllipsisVerticalIcon className="h-[1.2rem] w-[1.2rem]" />
+        <Button variant="ghost" size="icon" className="w-10 h-10">
+          <EllipsisHorizontalIcon className="h-[1.2rem] w-[1.2rem]" />
           <span className="sr-only">Toggle service options</span>
         </Button>
       </DropdownMenuTrigger>

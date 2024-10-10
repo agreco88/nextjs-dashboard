@@ -4,7 +4,6 @@ import { ThemeDropdownMenu } from "../theme-toggle";
 import IpxonLogo from "@/app/ui/ipxon-logo";
 import { LogoutButton, TermsAndConditionsButton } from "../button";
 import { DrawerComponent } from "../DrawerComponent";
-import { Button } from "@/components/ui/button";
 
 export default function SideNav() {
   return (
@@ -20,7 +19,6 @@ export default function SideNav() {
           <TermsAndConditionsButton />
           <div className="flex gap-2">
             <ThemeDropdownMenu />
-
             <form
               action={async () => {
                 "use server";

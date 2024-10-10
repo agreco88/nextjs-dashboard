@@ -11,7 +11,7 @@ const ServiceImageCard: React.FC<ServiceImageCardProps> = ({
   children,
 }) => {
   return (
-    <Card className="relative rounded-xl border bg-card text-card-foreground shadow col-span-1 overflow-hidden">
+    <Card className="p-4 relative flex flex-col grow justify-between rounded-xl border bg-card text-card-foreground shadow col-span-1 overflow-hidden">
       <Image
         src={image_url}
         alt={`${title} icon`}
@@ -19,10 +19,11 @@ const ServiceImageCard: React.FC<ServiceImageCardProps> = ({
         objectFit="cover"
         className="object-center absolute inset-0 z-0 opacity-40 dark:opacity-20"
       />
-      <CardTitle className="relative z-10 p-6 flex flex-row items-center justify-between space-y-0 pb-2 tracking-tight text-sm font-medium">
+      <CardTitle className="relative z-10 h-10 flex flex-row items-center justify-between space-y-0 tracking-tight text-sm font-medium">
         Type:
       </CardTitle>
-      <div className="relative z-10 p-6 pt-0 flex flex-col gap-1">
+
+      <div className="relative z-10 flex flex-col gap-1">
         <CardTitle className="text-2xl font-bold capitalize flex gap-1 text-dark-theme-title dark:text-white">
           {title}
         </CardTitle>

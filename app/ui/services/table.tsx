@@ -1,5 +1,4 @@
 import Image from "next/image";
-import { motion } from "framer-motion";
 import { Service } from "@/app/lib/definitions";
 import { fetchFilteredServices } from "@/app/lib/data";
 import Location from "./location";
@@ -62,7 +61,7 @@ export default function ServiceTable({ query }: ServiceTableProps) {
               <div className="flex items-center">
                 <Image
                   src={service.image_url}
-                  alt={`${service.name} icon`}
+                  alt={`${service.type} icon`}
                   width={28}
                   height={28}
                 />

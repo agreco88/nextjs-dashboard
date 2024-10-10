@@ -29,7 +29,7 @@ export type Service = {
   image_url: string;
   city: string;
   country: string;
-  user_id: string; // Linked to a specific user
+  user_id: string; // Linked to a specific users
 };
 
 export type ServiceImageCardProps = {
@@ -42,6 +42,9 @@ export type ServiceInfoCardProps = {
   title: string;
   heading: string;
   children?: ReactNode;
+  withDropdown: boolean;
+  serviceStatus: string;
+  serviceId: string;
 };
 
 export type DateInformationProps = {
@@ -66,7 +69,7 @@ export type LocationInfo = {
 };
 
 export type ResourceDetail = {
-  [key: string]: string; // Key-value pairs for details like Manufacturer, Model, etc.
+  [key: string]: string | number; // Allow both string and number values
 };
 
 export interface ResourceCardProps {
@@ -75,4 +78,5 @@ export interface ResourceCardProps {
   details: ResourceDetail; // Additional details
   serviceId: string;
   separatorColor: string; // Border color for the separator/utilization bar
+  separatorBg: string;
 }

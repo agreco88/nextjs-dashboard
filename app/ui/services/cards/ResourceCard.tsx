@@ -1,16 +1,32 @@
+"use client";
+
 import React from "react";
 import { ResourceCardProps } from "@/app/lib/definitions";
 import { Card, CardContent, CardTitle } from "@/components/ui/card";
-import { Separator } from "@radix-ui/react-dropdown-menu";
 import { ReadingChart } from "./ReadingChart";
+import { Progress } from "@/components/ui/progress";
+import { SeparatorHorizontal } from "lucide-react";
+import { Separator } from "@radix-ui/react-dropdown-menu";
+import ResourceRating from "./ResourceRating";
 
 const ResourceCard: React.FC<ResourceCardProps> = ({
   serviceId,
   title,
   value,
   details,
-  separatorColor,
+  separatorBg,
 }) => {
+  const [progress, setProgress] = React.useState(0);
+
+  React.useEffect(() => {
+    // Randomize progress every 2 seconds. Future API calls will be made here (TODO: Implement React Query)
+    const interval = setInterval(() => {
+      setProgress(Math.floor(Math.random() * 100)); // Random value between 0 and 100
+    }, 2000);
+
+    return () => clearInterval(interval); // Cleanup interval on component unmount
+  }, []);
+
   return (
     <Card
       key={title}
@@ -23,27 +39,48 @@ const ResourceCard: React.FC<ResourceCardProps> = ({
               <CardTitle className="tracking-tight dark:text-dark-theme-text text-sm font-medium">
                 {title}
               </CardTitle>
-              <CardTitle className="text-4xl font-bold capitalize">
-                {value}
-              </CardTitle>
+              {title === "CPU" || title === "RAM" ? (
+                <CardTitle className="text-4xl font-bold capitalize">
+                  {progress}%
+                </CardTitle>
+              ) : (
+                <CardTitle className="text-4xl font-bold capitalize">
+                  {value}%
+                </CardTitle>
+              )}
             </div>
           </div>
-
-          <Separator className={`my-4 rounded-full border ${separatorColor}`} />
+          {title === "CPU" || title === "RAM" ? (
+            <Progress
+              value={progress}
+              className={`my-4 rounded-full border h-[5px] ${separatorBg}`}
+            />
+          ) : (
+            <Progress
+              value={Number(value)}
+              className={`my-4 rounded-full border h-[5px] ${separatorBg}`}
+            />
+          )}
         </div>
-
         <div className="text-xs gap-2 flex text-muted-foreground font-bold">
           <ul className="grid grid-cols-2 gap-3 w-full">
             {Object.entries(details).map(([key, detail]) => (
               <li key={key} className="flex flex-col">
-                {key}: <span>{detail}</span>
+                {key.toLowerCase() === "rating" ? (
+                  <ResourceRating rating={Number(detail)} />
+                ) : (
+                  <>
+                    {key}: <span>{detail}</span>
+                  </>
+                )}
               </li>
             ))}
           </ul>
         </div>
-        <div className="flex grow"></div>
+
+        <div className="h-1 my-4 bg-slate-800 w-full rounded-full" />
+        <div>Uprade {title}</div>
       </div>
-      {/* <ReadingChart /> */}
     </Card>
   );
 };
