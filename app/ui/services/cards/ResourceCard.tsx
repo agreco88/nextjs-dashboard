@@ -78,8 +78,8 @@ const ResourceCard: React.FC<ResourceCardProps> = ({
           </ul>
         </div>
 
-        <div className="h-1 my-4 bg-slate-800 w-full rounded-full" />
-        <div>Uprade {title}</div>
+        {/* <div className="h-1 my-4 bg-slate-800 w-full rounded-full" />
+        <div>Uprade {title}</div> */}
       </div>
     </Card>
   );
